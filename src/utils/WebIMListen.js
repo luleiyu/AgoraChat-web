@@ -101,79 +101,84 @@ const initListen = () => {
         }, // 发布者发布新的状态时，订阅者触发该回调
     })
 
-    WebIM.conn.addEventHandler('REQUESTS', {
-        onContactInvited: (msg) => {
-            console.log('onContactInvited', msg)
-            let { requests } = store.getState()
-            let contactRequests = requests.contact
-            let data = {
-                name: msg.from,
-                status: 'pedding',
-                time: Date.now()
-            }
-            contactRequests.unshift(data)
-            let newRequests = { ...requests, contact: contactRequests }
-            store.dispatch(setRequests(newRequests))
-        },
-        onGroupChange: (msg) => {
-            console.log('onGroupChange', msg)
-            if (msg.type === 'joinGroupNotifications') {
-                let { requests } = store.getState()
-                let groupRequests = requests.group
-                let data = {
-                    name: msg.from,
-                    groupId: msg.gid,
-                    status: 'pedding',
-                    time: Date.now()
-                }
-                let index = groupRequests.findIndex((value) => {
-                    if (value.name === data.name && value.groupId === data.groupId){
-                        return true
-                    }
-                })
-                if (index > -1){
-                    groupRequests[index] = data
-                }else{
-                    groupRequests.unshift(data)
-                }
-                // groupRequests.unshift(data)
-                let newRequests = { ...requests, group: [...groupRequests] }
-                store.dispatch(setRequests(newRequests))
-            }else if (msg.type === "addMute") {
-                getGroupMuted(msg.gid);
-			}else if (msg.type ===  "removeMute") {
+	WebIM.conn.addEventHandler("REQUESTS", {
+		onContactInvited: (msg) => {
+			console.log("onContactInvited", msg);
+			let { requests } = store.getState();
+			let contactRequests = requests.contact;
+			let data = {
+				name: msg.from,
+				status: "pedding",
+				time: Date.now(),
+			};
+			contactRequests.unshift(data);
+			let newRequests = { ...requests, contact: contactRequests };
+			store.dispatch(setRequests(newRequests));
+		},
+		onGroupChange: (msg) => {
+			console.log("onGroupChange", msg);
+			if (msg.type === "joinGroupNotifications") {
+				let { requests } = store.getState();
+				let groupRequests = requests.group;
+				let data = {
+					name: msg.from,
+					groupId: msg.gid,
+					status: "pedding",
+					time: Date.now(),
+				};
+				let index = groupRequests.findIndex((value) => {
+					if (
+						value.name === data.name &&
+						value.groupId === data.groupId
+					) {
+						return true;
+					}
+				});
+				if (index > -1) {
+					groupRequests[index] = data;
+				} else {
+					groupRequests.unshift(data);
+				}
+				// groupRequests.unshift(data)
+				let newRequests = { ...requests, group: [...groupRequests] };
+				store.dispatch(setRequests(newRequests));
+			} else if (msg.type === "addMute") {
 				getGroupMuted(msg.gid);
-			}else if (msg.type === "addUserToGroupWhiteList") {
-                getGroupWrite(msg.gid);
-			}else if (msg.type === "rmUserFromGroupWhiteList") {
-                getGroupWrite(msg.gid);
+			} else if (msg.type === "removeMute") {
+				getGroupMuted(msg.gid);
+			} else if (msg.type === "addUserToGroupWhiteList") {
+				getGroupWrite(msg.gid);
+			} else if (msg.type === "rmUserFromGroupWhiteList") {
+				getGroupWrite(msg.gid);
 			}
-            
-        }
-    })
+		},
+	});
 
-    WebIM.conn.addEventHandler('TOKENSTATUS', {
-        onTokenWillExpire: (token) => {
-            let { myUserInfo } = store.getState()
-            getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
-                const { accessToken } = res
-                WebIM.conn.renewToken(accessToken)
-                const authData = sessionStorage.getItem('webim_auth')
-                const webim_auth = authData && JSON.parse(authData)
-                webim_auth.accessToken = accessToken
-                sessionStorage.setItem('webim_auth', JSON.stringify(webim_auth))
-            })
-        },
-        onTokenExpired: () => {
-            console.error('onTokenExpired')
-        },
-        onConnected: () => {
-            console.log('onConnected')
-        },
-        onDisconnected: () => {
-            console.log('onDisconnected')
-        }
-    })
-}
+	WebIM.conn.addEventHandler("TOKENSTATUS", {
+		onTokenWillExpire: (token) => {
+			let { myUserInfo } = store.getState();
+			getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
+				const { accessToken } = res;
+				WebIM.conn.renewToken(accessToken);
+				const authData = sessionStorage.getItem("webim_auth");
+				const webim_auth = authData && JSON.parse(authData);
+				webim_auth.accessToken = accessToken;
+				sessionStorage.setItem(
+					"webim_auth",
+					JSON.stringify(webim_auth)
+				);
+			});
+		},
+		onTokenExpired: () => {
+			console.error("onTokenExpired");
+		},
+		onConnected: () => {
+			console.log("onConnected");
+		},
+		onDisconnected: () => {
+			console.log("onDisconnected");
+		},
+	});
+};
 
 export default initListen;
