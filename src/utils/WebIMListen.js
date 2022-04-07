@@ -18,52 +18,62 @@ import { message } from '../components/common/alert'
 import { EaseApp } from "luleiyu-agora-chat"
 const history = createHashHistory()
 const initListen = () => {
-    WebIM.conn.listen({
-        onOpened: () => {
-            let { myUserInfo } = store.getState()
-            console.log(myUserInfo)
-            getSubPresence({usernames: [myUserInfo.agoraId]}).then(res => {
-                console.log(res, 'onOpened')
-                if (res.result[0].ext === 'Offline') {
-                    publishNewPresence({description: 'Online'})
-                }
-            })
-            getContacts();
-            getPublicGroups();
-            getBlackList()
-            history.push('/main')
-            store.dispatch(setFetchingStatus(false))
-        },
-        onClosed: () => {
-            store.dispatch(setFetchingStatus(false))
-            history.push('/login')
-        },
-        onError: (err) => {
-            console.log('onError>>>', err);
-        },
-        onPresence: (event) => {
-            console.log('onPresence>>>', event);
-            const { type } = event;
-            switch (type) {
-                case 'subscribed':
-                    getContacts();
-                    break;
-                case 'joinPublicGroupSuccess':
-                    getGroups();
-                    break;
-                case 'invite': 
-                    agreeInviteGroup(event)
-                    break;
-                case 'removedFromGroup':
-                    message.info(`${i18next.t('You have been removed from the group:')}` + event.gid)
-                    break;
-                default:
-                    break;
-            }
-        },
-        onContactInvited: (msg) => {
-            console.log('onContactInvited', msg)
-        },
+	WebIM.conn.listen({
+		onOpened: () => {
+			getContacts();
+			getPublicGroups();
+			getBlackList();
+			history.push("/main");
+			store.dispatch(setFetchingStatus(false));
+		},
+		onClosed: () => {
+			store.dispatch(setFetchingStatus(false));
+			history.push("/login");
+		},
+		onError: (err) => {
+			console.log("onError>>>", err);
+		},
+		onPresence: (event) => {
+			console.log("onPresence>>>", event);
+			const { type } = event;
+			switch (type) {
+				case "subscribed":
+					getContacts();
+					break;
+				case "joinPublicGroupSuccess":
+					getGroups();
+					break;
+				case "invite":
+					agreeInviteGroup(event);
+					break;
+				case "direct_joined":
+					getGroups();
+					break;
+				case "removedFromGroup":
+					message.info(
+						`${i18next.t(
+							"You have been removed from the group:"
+						)}` + event.gid
+					);
+					getGroups();
+					break;
+				case "updateAnnouncement":
+					message.info(
+						`event.from + ${i18next.t("Update Group Notice")}`
+					);
+					break;
+				case "deleteAnnouncement":
+					message.info(
+						`event.from + ${i18next.t("Delete Group Notice")}`
+					);
+					break;
+				default:
+					break;
+			}
+		},
+		onContactInvited: (msg) => {
+			console.log("onContactInvited", msg);
+		},
 
         onTokenWillExpire: () => {
             let { myUserInfo } = store.getState()

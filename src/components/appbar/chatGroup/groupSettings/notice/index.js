@@ -6,6 +6,7 @@ import i18next from "i18next";
 import store from "../../../../../redux/store";
 import WebIM from "../../../../../utils/WebIM";
 import { updateGroupNotice } from "../../../../../api/groupChat/getGroupInfo";
+import { message } from '../../../../common/alert'
 
 const useStyles = makeStyles((theme) => {
 	return {
@@ -91,33 +92,36 @@ const GroupNotice = () => {
 		owner === currentLoginUser || admin.includes(currentLoginUser);
 	let isGroupNotice = groupNotices.length > 0;
 
-	const [editChange, setEditChange] = useState(true);
-	const [disabledEdit, setDisabledEdit] = useState(true);
+	const [editStatus, setEditStatus] = useState(true);
+	const [disabledStatus, setDisabledStatus] = useState(true);
 	const [noticeContent, setnoticeContent] = useState("");
 
 	const handleEdit = () => {
-		setEditChange(false);
-		setDisabledEdit(false);
+		setEditStatus(false);
+		setDisabledStatus(false);
+		setnoticeContent(groupNotices);
 	};
 
 	const handleSetNoitce = () => {
 		updateGroupNotice(groupId, noticeContent);
-		setEditChange(true);
-		setDisabledEdit(true);
+		setEditStatus(true);
+		setDisabledStatus(true);
 	};
 
 	const handleNoticeChange = (e) => {
 		let value = e.target.value;
-		if (value.length > contentMaxLength){
-			console.log('AAA>>>');
-		};
-		setnoticeContent(e.target.value);
+		if (value.length > contentMaxLength) {
+			message.error(`${i18next.t("Content exceeded the limit")}`);
+			return
+		}
+		setnoticeContent(value);
+		
 	};
 
 	const renderNameEdit = () => {
 		return (
 			<>
-				{editChange ? (
+				{editStatus ? (
 					<Typography
 						className={classes.editStyle}
 						onClick={handleEdit}
@@ -144,17 +148,15 @@ const GroupNotice = () => {
 				<Typography>{isPermissions && renderNameEdit()}</Typography>
 			</Box>
 			<Box>
-				{isGroupNotice || !disabledEdit ? (
+				{isGroupNotice || !disabledStatus ? (
 					<Box>
 						<Box className={classes.noticeBox}>
 							<InputBase
 								type="text"
 								multiline={true}
-								maxLength={300}
 								rows={3}
-								autoFocus
-								defaultValue={groupNotices}
-								disabled={disabledEdit}
+								value={noticeContent}
+								disabled={disabledStatus}
 								className={classes.inputStyle}
 								onChange={handleNoticeChange}
 							/>
