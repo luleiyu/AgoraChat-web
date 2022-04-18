@@ -23,8 +23,6 @@ import { setMyUserInfo, closeGroupChatAction } from '../../redux/actions'
 import { logout } from '../../api/loginChat'
 import getGroups from '../../api/groupChat/getGroups'
 
-// import { EasePresence } from 'luleiyu-agora-chat'
-
 // import UserInfoPopover from './userInfo'
 import PresenceStatus from './presence/index'
 import { useSelector } from "react-redux";
