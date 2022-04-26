@@ -586,6 +586,7 @@ export default function thirdEmoji () {
     e.preventDefault()
     const { alt, currentSrc, src } = e.target
     EaseApp.handleThirdEmoji({gifUrl: src, msgType: 'img', subGifUrl: currentSrc, gifAlt: alt})
+    EaseApp.closeThirdEmoji()
   }
   const handlerMergeWishAndLike = () => {
     let tempArr = [...stiketsList, ...myWishList]

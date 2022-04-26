@@ -211,6 +211,7 @@ function GridDemo({ searchValue, width }) {
     e.preventDefault()
     const { alt, currentSrc, src } = e.target
     EaseApp.handleThirdEmoji({gifUrl: src, msgType: 'img', subGifUrl: currentSrc, gifAlt: alt})
+    EaseApp.closeThirdEmoji()
   }
   return (
     <>
