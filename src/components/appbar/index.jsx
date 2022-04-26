@@ -115,9 +115,7 @@ export default function Header() {
     return (
         <>
             <div className='chatlist-header'>
-                {/* <div className='chatlist-header-avatar'></div> */}
                 <Avatar style={{ width: 40, height: 40 }} src={avatarUrl} ></Avatar>
-                {/* <EasePresence></EasePresence> */}
                 <PresenceStatus style={{position: 'absolute', bottom: '10px', left: '40px'}} />
                 <div className='chatlist-header-title'>AgoraChat</div>
                 <div className='chatlist-header-more' onClick={handleClickMore}>...

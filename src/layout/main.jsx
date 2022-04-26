@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/appbar'
-import ThirdEmoji from '../components/appbar/thirdEmoji'
+import ThirdSticket from '../components/appbar/thirdSticket'
+import ThirdGifs from '../components/appbar/thirdGifs'
 import './login.css'
 import { loginWithToken } from '../api/loginChat'
 import WebIM from '../utils/WebIM';
@@ -81,7 +82,8 @@ export default function Main() {
         <div className='main-container'>
             <EaseApp
                 header={<Header />}
-                thridPartyEmoji={<ThirdEmoji />}
+                thridPartyStickets={<ThirdSticket />}
+                thridPartyGifs={<ThirdGifs />}
                 onChatAvatarClick={handleClickSessionInfoDialog}
                 onAvatarChange={handleClickGroupMemberInfoDialog}
                 onConversationClick={handleonConversationClick}

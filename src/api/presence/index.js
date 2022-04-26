@@ -3,6 +3,8 @@ import store from '../../redux/store'
 import { setPresenceList } from '../../redux/actions'
 
 export const publishNewPresence = (payload) => {
+  // payload.description = ''
+  console.log(payload, 'payload')
   return new Promise((resolve, reject) => {
     WebIM.conn.publishPresence(payload).then(res => {
       console.log(res, 'publishNewPresence')

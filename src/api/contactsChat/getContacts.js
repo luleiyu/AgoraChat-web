@@ -3,7 +3,7 @@ import store from '../../redux/store'
 import { message } from "../../components/common/alert";
 import i18next from "i18next";
 import { contactsAciton, setBlackList, updateRequestStatus, searchLoadAction } from '../../redux/actions'
-import { subFriendStatus } from '../presence/index'
+import { subFriendStatus, unsubFriendStatus, getSubPresence, getAllFriendsStatus } from '../presence/index'
 import { getSilentModeForConversations } from '../notificationPush/index'
 
 const getContacts = () => {
@@ -12,6 +12,12 @@ const getContacts = () => {
             usernames: res.data
         }
         subFriendStatus(payload)
+        // unsubFriendStatus({usernames: []})
+        // getSubPresence({usernames: []})
+        // getAllFriendsStatus({
+        //     pageNum: '444',
+		//     pageSize: -10
+        // })
         const conversationList = []
         res.data.forEach(item => {
             conversationList.push({
