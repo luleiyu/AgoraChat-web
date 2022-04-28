@@ -198,10 +198,10 @@ const initListen = () => {
                     break;
                 case 'invite': 
                     agreeInviteGroup(event)
-                    if (getLocalStorageData().sound) {
-                        playSound()
-                    }
-                    notification({body: 'Have A Group Invite', tag: randomNumber()}, {title: 'agora chat'})
+                    // if (getLocalStorageData().sound) {
+                    //     playSound()
+                    // }
+                    // notification({body: 'Have A Group Invite', tag: randomNumber()}, {title: 'agora chat'})
                     break;
                 case 'removedFromGroup':
                     message.info(`${i18next.t('You have been removed from the group:')}` + event.gid)
@@ -271,28 +271,28 @@ const initListen = () => {
         onTextMessage: (message) => {
             console.log("onTextMessage==agora-chat", message);
             // handlerNewMessage(message)
-            publicNotify(message, 'text')
+            // publicNotify(message, 'text')
         },
         onFileMessage: (message) => {
             console.log("onFileMessage", message);
             // handlerNewMessage(message)
-            publicNotify(message, 'file')
+            // publicNotify(message, 'file')
         },
         onImageMessage: (message) => {
             console.log("onImageMessage", message);
             // handlerNewMessage(message)
-            publicNotify(message, 'img')
+            // publicNotify(message, 'img')
         },
     
         onAudioMessage: (message) => {
             console.log("onAudioMessage", message);
             // handlerNewMessage(message)
-            publicNotify(message, 'audio')
+            // publicNotify(message, 'audio')
         },
         onVideoMessage: (message) => {
             console.log("onVideoMessage", message);
             // handlerNewMessage(message)
-            publicNotify(message, 'video')
+            // publicNotify(message, 'video')
         },
     })
 
@@ -309,10 +309,10 @@ const initListen = () => {
             contactRequests.unshift(data)
             let newRequests = { ...requests, contact: contactRequests }
             store.dispatch(setRequests(newRequests))
-            if (getLocalStorageData().sound) {
-                playSound()
-            }
-            notification({body: 'Have A New Friend Want To Be Your Friend', tag: randomNumber()}, {title: 'agora chat'})
+            // if (getLocalStorageData().sound) {
+            //     playSound()
+            // }
+            // notification({body: 'Have A New Friend Want To Be Your Friend', tag: randomNumber()}, {title: 'agora chat'})
         },
         onGroupChange: (msg) => {
             console.log('onGroupChange', msg)
@@ -347,7 +347,7 @@ const initListen = () => {
 			}else if (msg.type === "rmUserFromGroupWhiteList") {
                 getGroupWrite(msg.gid);
 			}
-            checkBrowerNotifyStatus(false)
+            // checkBrowerNotifyStatus(false)
         }
     })
 

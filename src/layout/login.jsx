@@ -69,7 +69,10 @@ export default function Login() {
         <div className='login-container'>
             <div className='login-form'>
                 <div className='login-form-icon'></div>
-                <div className='login-form-AC'></div>
+                <div className='login-form-AC'>
+                    <div className='login-form-AC-bgc'></div>
+                    <div className='login-header-title'>API Example</div>
+                </div>
                 {notice.show ? <div className='login-form-notice'>
                     {notice.text}
                 </div> : null}

@@ -156,7 +156,7 @@ export const changeIcon = (iconTitle = {}) => {
       document.head.appendChild($favicon);
     }
   };
-  let icon = iconTitle.iconLink || '/Favicon@2x.png'; // 图片地址
+  let icon = iconTitle.iconLink || '/appicon@2x.png'; // 图片地址
   changeFavicon(icon); // 动态修改网站图标
   changeTitle()
 }
@@ -173,7 +173,7 @@ export const changeTitle = () => {
   }
   console.log(num)
   const title = num === 0 ? 'agora chat' : `(${num}) new message` // 网站标题
-  document.title = title; // 动态修改网站标题
+  // document.title = title; // 动态修改网站标题
 }
 
 export const notify = () => {

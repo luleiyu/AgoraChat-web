@@ -585,7 +585,8 @@ export default function thirdEmoji () {
     console.log(e)
     e.preventDefault()
     const { src } = e.target
-    EaseApp.handleThirdEmoji({emoji_url: src, emoji_type: 'img'})
+    const type = src.substr(src.lastIndexOf('.'))
+    EaseApp.handleThirdEmoji({emoji_url: src, emoji_type: type})
     EaseApp.closeThirdEmoji()
   }
   const handlerMergeWishAndLike = () => {

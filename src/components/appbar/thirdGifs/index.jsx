@@ -112,7 +112,21 @@ const useStyles = makeStyles((theme) => {
     },
     titleStyle: {
       margin: '10px 0',
-    }
+    },
+    loadingBox: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      top: 50,
+      background:'#fff',
+      textAlign: 'center',
+    },
+    loadingImg: {
+      width: '40px',
+      paddingTop: '100px',
+      margin: '0 auto',
+    },
   }
 })
 
@@ -200,30 +214,35 @@ function getFileName(url) {
 	return url.substring(pos + 1); // 截取最后一个/位置到字符长度，也就是截取文件名
 }
 
-function GridDemo({ searchValue, width }) {
+function GridDemo({ searchValue, width, closeLoading }) {
   let fetchGifs = ''
   if (searchValue) {
     fetchGifs = (offset) => giphyFetch.search(searchValue, { offset, limit: 10 })
   } else {
     fetchGifs = (offset) => giphyFetch.trending({ offset, limit: 10 })
   }
-  const handlerSendEmoji = (e) => {
+  const onGifClick = (gif, e) => {
     e.preventDefault()
-    const { src } = e.target
-    EaseApp.handleThirdEmoji({emoji_url: src, emoji_type: 'img'})
+    console.log(gif, e, 'gif, e')
+    const { images: { fixed_width_small: { url } }, type } = gif
+    EaseApp.handleThirdEmoji({emoji_url: url, emoji_type: type})
     EaseApp.closeThirdEmoji()
+  }
+  const onGifSeen = () => {
+    closeLoading()
   }
   return (
     <>
-      <div onClick={handlerSendEmoji}>
-        <Grid
-          fetchGifs={fetchGifs}
-          width={width}
-          columns={3}
-          gutter={6}
-          key={searchValue}
-        />
-      </div>
+      <Grid
+        fetchGifs={fetchGifs}
+        width={width}
+        columns={3}
+        gutter={6}
+        key={searchValue}
+        onGifClick={onGifClick}
+        onGifSeen={onGifSeen}
+      />
+      
     </>
   );
 }
@@ -233,6 +252,7 @@ export default function thirdEmoji () {
   const [searchInput, setSearchInput] = useState(false)
   const [values, setValues] = useState('')
   const inputRef = useRef(null)
+  const [loading, setLoading] = useState(true)
 
   const handleChange = (e) => {
     const { value } = e.target
@@ -241,6 +261,9 @@ export default function thirdEmoji () {
   const clearInput = () => {
     inputRef.current.value = ''
     setValues('')
+  }
+  const closeLoading = () => {
+    setLoading(false)
   }
   if (searchInput) {
     return (
@@ -256,9 +279,16 @@ export default function thirdEmoji () {
         <div className={classes.gifsBox}>
           <div className={classes.titleStyle}>Trending GIFs</div>
           {
-            <GridDemo searchValue={values} width={370} />
+            <GridDemo searchValue={values} width={370} closeLoading={closeLoading} />
           }
         </div>
+        {
+          loading ?
+          <div className={classes.loadingBox}>
+            <img className={classes.loadingImg} src="https://media4.giphy.com/media/sSgvbe1m3n93G/giphy.gif?cid=53fd32187m84dbp9pk6cq1j7kl4ps54cnu0uoqhpd9no6b30&rid=giphy.gif&ct=g" alt="loading" />
+          </div>
+          : null
+        }
       </div>
     )
   } else {
@@ -270,7 +300,14 @@ export default function thirdEmoji () {
             <span>Search GIFs</span>
           </div>
         </div>
-        <GridDemo width={370} />
+        <GridDemo width={370} closeLoading={closeLoading} />
+        {
+          loading ?
+          <div className={classes.loadingBox}>
+            <img className={classes.loadingImg} src="https://media4.giphy.com/media/sSgvbe1m3n93G/giphy.gif?cid=53fd32187m84dbp9pk6cq1j7kl4ps54cnu0uoqhpd9no6b30&rid=giphy.gif&ct=g" alt="loading" />
+          </div>
+          : null
+        }
       </div>
     )
   }

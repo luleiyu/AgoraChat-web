@@ -17,6 +17,9 @@ const getGroups = () => {
         store.dispatch(groupListAciton(res.data))
         store.dispatch(searchLoadAction(false))
     })
+    WebIM.conn.getJoinedGroups({pageNum: 1, pageSize: 500}).then(res => {
+        console.log('getJoinedGroups>>>',res);
+    })
 }
 
 export default getGroups;

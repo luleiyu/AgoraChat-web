@@ -28,6 +28,7 @@ const createGroup = (
 			approval: groupApprovalChecked,
 			allowinvites: groupInviteChecked,
 			inviteNeedConfirm: false,
+			// maxusers: 1
 		},
 	};
 	WebIM.conn.createGroupNew(options).then((res) => {
