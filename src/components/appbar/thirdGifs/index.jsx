@@ -49,10 +49,9 @@ const useStyles = makeStyles((theme) => {
       marginRight: '5px',
     },
     searchGifsBox: {
-      width: '100%',
-      height: '850px',
-      position: 'absolute',
-      top: '-477px',
+      height: '85vh',
+      position: 'fixed',
+      bottom: '80px',
       background: '#fff',
       zIndex: '999',
       borderRadius: '16px',
@@ -104,7 +103,7 @@ const useStyles = makeStyles((theme) => {
       cursor: 'pointer',
     },
     gifsBox: {
-      maxHeight: '770px',
+      height: 'calc(100% - 80px)',
       overflow: 'auto',
       color: '#979797',
       paddingLeft: '10px',
@@ -121,6 +120,7 @@ const useStyles = makeStyles((theme) => {
       top: 50,
       background:'#fff',
       textAlign: 'center',
+      borderRadius: '16px',
     },
     loadingImg: {
       width: '40px',

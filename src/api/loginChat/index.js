@@ -7,6 +7,7 @@ export const getToken = (agoraId, nickName) => {
 }
 
 export const loginWithToken = (agoraId, agoraToken) => {
+    console.log(agoraId, agoraToken)
     let options = {
         user: agoraId,
         pwd: agoraToken,

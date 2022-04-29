@@ -34,6 +34,7 @@ export default function Login() {
         }
         store.dispatch(setFetchingStatus(true))
         getToken(values.agoraId, values.nickName).then((res) => {
+            console.log(res, 'console.log(agoraId, agoraToken)')
             const { accessToken } = res
             loginWithToken(values.agoraId, values.nickName) // accessToken
             store.dispatch(setMyUserInfo({ agoraId: values.agoraId, nickName: values.nickName }))

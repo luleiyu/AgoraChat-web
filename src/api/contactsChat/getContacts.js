@@ -11,7 +11,7 @@ const getContacts = () => {
         const payload = {
             usernames: res.data
         }
-        subFriendStatus(payload)
+        // subFriendStatus(payload)
         // unsubFriendStatus({usernames: []})
         // getSubPresence({usernames: []})
         // getAllFriendsStatus({
@@ -25,7 +25,7 @@ const getContacts = () => {
                 type: 'singleChat'
             })
         })
-        getSilentModeForConversations({conversationList})
+        // getSilentModeForConversations({conversationList})
         store.dispatch(contactsAciton(res.data))
         store.dispatch(searchLoadAction(false))
     });

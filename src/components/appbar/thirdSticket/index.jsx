@@ -53,6 +53,11 @@ const useStyles = makeStyles((theme) => {
       overflowX: 'scroll',
       display: 'flex',
       alignItems: 'center',
+      '& ::-webkit-scrollbar': {
+        display: 'none', /* Chrome Safari */
+      },
+      scrollbarWidth: 'none', /* firefox */
+      '-ms-overflow-style': 'none', /* IE 10+ */
     },
     btnWord: {
       textAlign: 'left',
@@ -62,9 +67,9 @@ const useStyles = makeStyles((theme) => {
     },
     searchGifsBox: {
       width: '100%',
-      height: '850px',
+      height: '85vh',
       position: 'absolute',
-      top: '-518px',
+      bottom: '0px',
       background: '#fff',
       zIndex: '999',
       borderRadius: '16px',
@@ -119,13 +124,13 @@ const useStyles = makeStyles((theme) => {
       cursor: 'pointer',
     },
     gifsBox: {
-      maxHeight: '720px',
+      height: 'calc(100% - 140px)',
       overflow: 'auto',
       color: '#979797',
       textAlign: 'left',
     },
     heighterBox: {
-      maxHeight: '770px',
+      height: 'calc(100% - 80px)',
       paddingLeft: '10px',
     },
     titleStyle: {
@@ -138,7 +143,7 @@ const useStyles = makeStyles((theme) => {
     },
     emptyWord: {
       textAlign: 'center',
-      lineHeight: '750px',
+      lineHeight: '70vh',
       color: '#999999',
       fontSize: '18px',
     },
@@ -149,6 +154,7 @@ const useStyles = makeStyles((theme) => {
       top: '0',
       bottom: '0',
       right: '0',
+      borderRadius: '16px',
     },
     loadingImg: {
       width: '40px',
@@ -492,12 +498,16 @@ export default function thirdEmoji () {
         setStiketsList(res.packageList)
         const { pageCount } = res.pageMap
         setTotlalPagecount(pageCount)
+      } else {
+        setStiketsList([])
+        setBgcFlag(3)
       }
     })
   }
 
   useEffect(() => {
     mySticketPacks({pageNumber: 1})
+    handlerBtn(0)
   }, [''])
   const searchPopover = ({ value, pageNumber, limit = 50 }) => {
     setLoading(true)

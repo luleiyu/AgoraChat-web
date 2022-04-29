@@ -11,7 +11,7 @@ const request = new axios.create({
 // 添加请求拦截器
 request.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
-  console.log(config, 'config')
+  // console.log(config, 'config')
   const { myUserInfo: { agoraId } } = store.getState()
   const { params, url } = config
   if (params) {
@@ -30,7 +30,7 @@ request.interceptors.request.use(function (config) {
 // 添加响应拦截器
 request.interceptors.response.use(function (response) {
   // 对响应数据做点什么
-  console.log(response, 'response')
+  // console.log(response, 'response')
   const { status, data: { body, header } } = response
   if (status === 200 && header.code === '0000') {
     if (Array.isArray(body) && body.length === 0) {
