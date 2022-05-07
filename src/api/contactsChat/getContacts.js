@@ -3,14 +3,14 @@ import store from '../../redux/store'
 import { message } from "../../components/common/alert";
 import i18next from "i18next";
 import { contactsAciton, setBlackList, updateRequestStatus, searchLoadAction } from '../../redux/actions'
-import { subFriendStatus, unsubFriendStatus, getSubPresence, getAllFriendsStatus } from '../presence/index'
-import { getSilentModeForConversations } from '../notificationPush/index'
+// import { subFriendStatus, unsubFriendStatus, getSubPresence, getAllFriendsStatus } from '../presence/index'
+// import { getSilentModeForConversations } from '../notificationPush/index'
 
 const getContacts = () => {
     WebIM.conn.getRoster().then((res) => {
-        const payload = {
-            usernames: res.data
-        }
+        // const payload = {
+        //     usernames: res.data
+        // }
         // subFriendStatus(payload)
         // unsubFriendStatus({usernames: []})
         // getSubPresence({usernames: []})

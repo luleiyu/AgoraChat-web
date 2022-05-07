@@ -79,3 +79,21 @@ export function downloadMarketSticker (params = {}) {
     params
   })
 }
+// 最近发送的sticker
+export function  recentlySentStickers (params = {}) {
+  const { myUserInfo: { agoraId } } = store.getState()
+  return request({
+    method: 'get',
+    url: `/package/send/${agoraId}`,
+    params
+  })
+}
+
+// 发送记录
+export function registeringStickerSend (params = {}) {
+  return request({
+    method: 'post',
+    url: `/analytics/send/${params.stickerId}`,
+    params
+  })
+}

@@ -7,11 +7,11 @@ import { makeStyles } from '@material-ui/core/styles';
 // import { EaseApp } from "chat-uikit";
 import { EaseApp } from "luleiyu-agora-chat";
 // import { EaseApp } from 'agora-chat-uikit'
-import store from '../../../../redux/store'
-import { searchAddedGroupAction, searchLoadAction } from '../../../../redux/actions'
+// import store from '../../../../redux/store'
+// import { searchAddedGroupAction, searchLoadAction } from '../../../../redux/actions'
 import GroupSettingsDialog from '../groupSettings'
 import getGroupInfo from '../../../../api/groupChat/getGroupInfo'
-import getGroups from '../../../../api/groupChat/getGroups'
+// import getGroups from '../../../../api/groupChat/getGroups'
 import Loading from '../../../common/loading'
 import search_icon from '../../../../assets/search.png'
 import groupAvatar_icon from '../../../../assets/groupAvatar.png'

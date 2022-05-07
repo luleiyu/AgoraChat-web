@@ -27,7 +27,7 @@ export default function Main() {
         let webimAuthObj = {}
         if (webimAuth && WebIM.conn.logOut) {
             webimAuthObj = JSON.parse(webimAuth)
-            loginWithToken(webimAuthObj.agoraId, webimAuthObj.nickName) // accessToken
+            loginWithToken(webimAuthObj.agoraId, webimAuthObj.accessToken) // accessToken
             store.dispatch(setMyUserInfo({ agoraId: webimAuthObj.agoraId, nickName: webimAuthObj.nickName }))
         }else if (WebIM.conn.logOut) {
             history.push('/login')  
@@ -76,6 +76,19 @@ export default function Main() {
         }
         store.dispatch(setUnread(unread))
         changeTitle()
+        // WebIM.conn.joinChatRoom({
+        //     roomId: sessionId, // 聊天室id
+        //     message: '',
+        //     success: function(){
+        //         // console.log("加入聊天室成功");
+        //         // if(!me.msgList){
+        //         //     me.getHistoryMessage({ name: key.id, isGroup: true });
+        //         //     setTimeout(() => {
+        //         //         me.$forceUpdate();
+        //         //     }, 100);
+        //         // }
+        //     },
+        // });
     }
     // notify()
     return (

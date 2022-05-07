@@ -2,7 +2,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { EaseApp } from 'luleiyu-agora-chat';
-import { searchStiPopSticket, usedTickets, likeTickets, myDownloadTickets, ticketsMarket, getPackInfo, deletePack, addOrdelWishPack, downloadMarketSticker } from '../../../api/axios/stipop'
+import {
+  searchStiPopSticket,
+  usedTickets,
+  likeTickets,
+  myDownloadTickets,
+  ticketsMarket,
+  getPackInfo,
+  deletePack,
+  addOrdelWishPack,
+  downloadMarketSticker,
+  recentlySentStickers,
+  registeringStickerSend,
+} from '../../../api/axios/stipop'
 import _ from "lodash"
 import emojiImg from '../../../assets/clock@2x.png'
 import search from '../../../assets/magnifying@2x.png'
@@ -35,6 +47,11 @@ const useStyles = makeStyles((theme) => {
       alignItems: 'center',
       justifyContent: 'space-around',
       margin: '5px 0',
+      '& ::-webkit-scrollbar': {
+        display: 'none', /* Chrome Safari */
+      },
+      scrollbarWidth: 'none', /* firefox */
+      '-ms-overflow-style': 'none', /* IE 10+ */
     },
     emojiBtnBox: {
       width: '40px',
@@ -491,11 +508,11 @@ export default function thirdEmoji () {
   }
   const downloadHistory = ({pageNumber}) => {
     setLoading(true)
-    usedTickets({pageNumber, limit: 50}).then(res => {
+    recentlySentStickers({pageNumber, limit: 50}).then(res => {
       console.log(res)
       setLoading(false)
-      if (res.packageList?.length) {
-        setStiketsList(res.packageList)
+      if (res.stickerList?.length) {
+        setStiketsList(res.stickerList)
         const { pageCount } = res.pageMap
         setTotlalPagecount(pageCount)
       } else {
@@ -591,13 +608,14 @@ export default function thirdEmoji () {
       trendingSticketPacks({pageNumber: 1})
     }
   }
-  const handlerSendEmoji = (e) => {
+  const handlerSendEmoji = (e, item) => {
     console.log(e)
     e.preventDefault()
     const { src } = e.target
     const type = src.substr(src.lastIndexOf('.'))
     EaseApp.handleThirdEmoji({emoji_url: src, emoji_type: type})
     EaseApp.closeThirdEmoji()
+    registeringStickerSend({stickerId: item.stickerId})
   }
   const handlerMergeWishAndLike = () => {
     let tempArr = [...stiketsList, ...myWishList]
@@ -782,7 +800,7 @@ export default function thirdEmoji () {
             {
               searchTikets.length ? searchTikets.map(item => {
                 return (
-                  <img onClick={handlerSendEmoji} key={item.stickerId} className={classes.sticketImg} alt={item.keyword} src={item.stickerImg} />
+                  <img onClick={(e) => handlerSendEmoji(e, item)} key={item.stickerId} className={classes.sticketImg} alt={item.keyword} src={item.stickerImg} />
                 )
               })
               : <div className={classes.emptyWord}>No Stickers Found</div>
@@ -976,7 +994,7 @@ export default function thirdEmoji () {
             stiketsList.length ?
             stiketsList.map(item => {
               return (
-                <img onClick={handlerSendEmoji} className={classes.historyImg} key={item.stickerId || item.packageId} alt={item.packageName} src={item.stickerImg || item.packageImg} />
+                <img onClick={(e) => handlerSendEmoji(e, item)} className={classes.historyImg} key={item.stickerId || item.packageId} alt={item.packageName} src={item.stickerImg || item.packageImg} />
               )
             })
             :

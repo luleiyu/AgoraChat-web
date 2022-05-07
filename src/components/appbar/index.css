@@ -4,7 +4,8 @@
     /* background-color: #EDEFF2; */
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: space-between;
     padding: 0 12px;
     box-sizing: border-box;
     position: relative;
@@ -19,7 +20,8 @@
 }
 
 .chatlist-header-title {
-    color: #7F91A8;
+    /* color: #7F91A8; */
+    color: #005fff;
     font-size: 24px;
     font-weight: 800;
 }
@@ -35,4 +37,7 @@
     transform: rotate(90deg);
     cursor: pointer;
     position: relative;
+    /* margin-left: 30px;
+    font-size: 20px;
+    font-weight: 700; */
 }

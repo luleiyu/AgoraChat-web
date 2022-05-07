@@ -115,15 +115,15 @@ export default function Header() {
     return (
         <>
             <div className='chatlist-header'>
-                {/* <Avatar style={{ width: 40, height: 40 }} src={avatarUrl} ></Avatar>
-                <PresenceStatus style={{position: 'absolute', bottom: '10px', left: '40px'}} /> */}
+                <Avatar style={{ width: 40, height: 40 }} src={avatarUrl} ></Avatar>
+                {/* <PresenceStatus style={{position: 'absolute', bottom: '10px', left: '40px'}} /> */}
                 <div className='chatlist-header-title'>
                     <span>AgoraChat</span>
-                    <span className='chatlist-header-sub-title'>API Example</span>
+                    {/* <span className='chatlist-header-sub-title'>API Example</span> */}
                 </div>
-                {/* <div className='chatlist-header-more' onClick={handleClickMore}>...
+                <div className='chatlist-header-more' onClick={handleClickMore}>...
                 {unDealRequestsNum > 0 ? <p style={{ width: '6px', height: '6px', background: '#FF14CC', borderRadius: '3px', position: 'absolute', top: '-12px', left: '-5px' }}></p> : null}
-                </div> */}
+                </div>
 
                 <Menu
                     id="simple-menu"

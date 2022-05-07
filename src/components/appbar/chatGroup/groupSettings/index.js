@@ -6,10 +6,10 @@ import {
 	Box,
 	Tabs,
 	Tab,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemText,
+	// List,
+	// ListItem,
+	// ListItemIcon,
+	// ListItemText,
 	Button,
 } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
@@ -17,7 +17,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import WebIM from "../../../../utils/WebIM";
 import { TabPanel, a11yProps } from "../../../common/tabs";
 
-import Members from "./members";
+// import Members from "./members";
 // import AddMembers from "./addMembers";
 // import Notice from "./notice";
 // import TransFerOwner from "./transfer";
@@ -30,7 +30,7 @@ import addMembersIcon from "../../../../assets/addcontact@2x.png";
 import noticeIcon from "../../../../assets/notice@2x.png";
 import filesIcon from "../../../../assets/files@2x.png";
 import editIcon from "../../../../assets/edit@2x.png";
-import allowSearchIcon from "../../../../assets/allow_search@2x.png";
+// import allowSearchIcon from "../../../../assets/allow_search@2x.png";
 import transferIcon from "../../../../assets/transfer@2x.png";
 import deleteIcon from "../../../../assets/red@2x.png";
 import muteIcon from '../../../../assets/unmute.png'

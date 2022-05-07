@@ -1,7 +1,8 @@
 import WebIM from '../../utils/WebIM'
 
 export const getToken = (agoraId, nickName) => {
-    return postData('https://a71.easemob.com/app/chat/user/login', { "userAccount": agoraId, "userNickname": nickName })
+    return postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": agoraId, "userNickname": nickName })
+    // return postData('https://a71.easemob.com/app/chat/user/login', { "userAccount": agoraId, "userNickname": nickName })
     // return postData('https://a1.easemob.com/app/chat/user/login', { "userAccount": agoraId, "userNickname": nickName })
     // return postData('http://a1-test.easemob.com:8089/app/chat/user/login', { "userAccount": agoraId, "userNickname": nickName })
 }
@@ -10,8 +11,8 @@ export const loginWithToken = (agoraId, agoraToken) => {
     console.log(agoraId, agoraToken)
     let options = {
         user: agoraId,
-        pwd: agoraToken,
-        // agoraToken: agoraToken
+        // pwd: agoraToken,
+        agoraToken: agoraToken
     };
 
     WebIM.conn.open(options)

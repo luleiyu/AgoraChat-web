@@ -200,7 +200,7 @@ export const getSilentModeForConversations = (payload, params = {type: '', optio
       const collectObj = {}
       const collectObj1 = {}
       const {type, options: { duration }} = params
-      console.log(params, global, tempObj, 'params, global, tempObj')
+      console.log(type, params, global, tempObj, duration, 'params, global, tempObj')
       for (let item in tempObj) {
         // 全局存在时间并时间没过期，单聊，群组存在时间并没过期，单聊，群组存在类型并为none
         if ((global[agoraId].ignoreDuration && !setTimeVSNowTime(global[agoraId], true)) || (tempObj[item].ignoreDuration && !setTimeVSNowTime(tempObj[item], true)) || (tempObj[item].type && tempObj[item].type === 'NONE') || ((!tempObj[item].type || (tempObj[item].type && tempObj[item].type === 'DEFAULT')) && global[agoraId].type === 'NONE')) {
