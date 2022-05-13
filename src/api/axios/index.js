@@ -4,7 +4,7 @@ import { stipopAppKey } from '../../utils/config'
 
 const request = new axios.create({
   baseURL: 'https://messenger.stipop.io/v1',
-  timeout: 50000,
+  timeout: 500000,
   headers: { 'apikey': stipopAppKey }
 })
 

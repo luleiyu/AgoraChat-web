@@ -369,11 +369,11 @@ const SessionInfoPopover = ({ open, onClose, sessionInfo }) => {
 							src={avatarImg}
 							className={classes.avatarImg}
 						></Avatar>
-						<Tooltip title={usePresenceExt} placement="bottom-end">
+						{/* <Tooltip title={usePresenceExt} placement="bottom-end">
 							<div className={classes.imgBox}>
 								<img alt="" src={statusImgObj[usePresenceExt] || customIcon} className={classes.imgStyle} />
 							</div>
-						</Tooltip>
+						</Tooltip> */}
 						<Typography className={classes.nameText}>
 							{to}
 							{
@@ -384,7 +384,7 @@ const SessionInfoPopover = ({ open, onClose, sessionInfo }) => {
 							AgoraID:{to}
 						</Typography>
 					</Box>
-					<Button
+					{/* <Button
 						className={classes.infoBtn}
 						onClick={() => setUserNotification()}
 					>
@@ -397,7 +397,7 @@ const SessionInfoPopover = ({ open, onClose, sessionInfo }) => {
 							</div>
 							<span className={classes.timeMuteStyle}>{i18next.t(muteTimeText)}</span>
 						</Typography>
-					</Button>
+					</Button> */}
 					<Button
 						className={classes.infoBtn}
 						onClick={() => addFromBlackList(to)}

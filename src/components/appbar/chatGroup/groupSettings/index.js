@@ -299,11 +299,11 @@ const GroupSettingsDialog = ({ open, onClose, currentGroupId }) => {
 							{...a11yProps(3)}
 							className={classes.itemBox}
 						/>
-						<Tab
+						{/* <Tab
 							label={notificationsLabel()}
 							{...a11yProps(4)}
 							className={classes.itemBox}
-						/>
+						/> */}
 						<Tab
 							label={groupInfoLabel()}
 							{...a11yProps(5)}
@@ -381,13 +381,13 @@ const GroupSettingsDialog = ({ open, onClose, currentGroupId }) => {
 					>
 						Group File
 					</TabPanel>
-					<TabPanel
+					{/* <TabPanel
 						value={value}
 						index={4}
 						className={classes.content}
 					>
 						<Notifications showMuteImgOrNot={showMuteImgOrNot} useScene="groupChat" useComponent="Group" />
-					</TabPanel>
+					</TabPanel> */}
 					<TabPanel
 						value={value}
 						index={5}

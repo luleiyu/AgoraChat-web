@@ -26,6 +26,7 @@ import marketImg from '../../../assets/sticker_bag@2x.png'
 import deleteInput from '../../../assets/delete@2x.png'
 import downloadImg from '../../../assets/tray_n_arrow_down@2x.png'
 import closeImg from '../../../assets/x@2x.png'
+import giphyGif from '../../../assets/giphy.gif'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -612,7 +613,7 @@ export default function thirdEmoji () {
     console.log(e)
     e.preventDefault()
     const { src } = e.target
-    const type = src.substr(src.lastIndexOf('.'))
+    const type = src.substr(src.lastIndexOf('.') + 1)
     EaseApp.handleThirdEmoji({emoji_url: src, emoji_type: type})
     EaseApp.closeThirdEmoji()
     registeringStickerSend({stickerId: item.stickerId})
@@ -760,7 +761,7 @@ export default function thirdEmoji () {
   // }
   const scrollRequestData = (e, callback, callback1, callback2) => {
     const { clientHeight, scrollHeight, scrollTop } = e.target
-    console.log(clientHeight, scrollHeight, scrollTop)
+    // console.log(clientHeight, scrollHeight, scrollTop)
     const dis = scrollHeight - (clientHeight + scrollTop)
     if (dis <= 10 && !loading && (popoverPNum < totlalPagecount)) {
       popoverPNum++
@@ -809,7 +810,7 @@ export default function thirdEmoji () {
         </div>
         {
           loading && <div className={classes.loading}>
-            <img className={classes.loadingImg} src="https://media4.giphy.com/media/sSgvbe1m3n93G/giphy.gif?cid=53fd32187m84dbp9pk6cq1j7kl4ps54cnu0uoqhpd9no6b30&rid=giphy.gif&ct=g" alt="loading" />
+            <img className={classes.loadingImg} src={giphyGif} alt="loading" />
           </div>
         }
       </div>
@@ -905,7 +906,7 @@ export default function thirdEmoji () {
                       {
                         item.stickers?.length ?
                         item.downloading ?
-                        <img className={`${classes.emojiImg} ${classes.downloadImg}`} src="https://media4.giphy.com/media/sSgvbe1m3n93G/giphy.gif?cid=53fd32187m84dbp9pk6cq1j7kl4ps54cnu0uoqhpd9no6b30&rid=giphy.gif&ct=g" alt="" />
+                        <img className={`${classes.emojiImg} ${classes.downloadImg}`} src={giphyGif} alt="" />
                         : item.isDownload === 'Y' ?
                           <img className={`${classes.emojiImg} ${classes.downloadImg}`} src={checkGray} alt="" />
                         : <img onClick={(e) => handlerDownloadMarket(e, item)} className={`${classes.emojiImg} ${classes.downloadImg}`} src={downloadImg} alt="" />
@@ -928,7 +929,7 @@ export default function thirdEmoji () {
         </div>
         {
           loading && <div className={classes.loading}>
-            <img className={classes.loadingImg} src="https://media4.giphy.com/media/sSgvbe1m3n93G/giphy.gif?cid=53fd32187m84dbp9pk6cq1j7kl4ps54cnu0uoqhpd9no6b30&rid=giphy.gif&ct=g" alt="loading" />
+            <img className={classes.loadingImg} src={giphyGif} alt="loading" />
           </div>
         }
       </div>
@@ -1005,7 +1006,7 @@ export default function thirdEmoji () {
           }
           {
           loading && <div className={classes.loading} style={{textAlign: 'center', top: '100px'}}>
-              <img className={classes.loadingImg} style={{paddingTop: '80px'}} src="https://media4.giphy.com/media/sSgvbe1m3n93G/giphy.gif?cid=53fd32187m84dbp9pk6cq1j7kl4ps54cnu0uoqhpd9no6b30&rid=giphy.gif&ct=g" alt="loading" />
+              <img className={classes.loadingImg} style={{paddingTop: '80px'}} src={giphyGif} alt="loading" />
             </div>
           }
         </div>

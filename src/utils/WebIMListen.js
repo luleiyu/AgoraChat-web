@@ -215,12 +215,12 @@ const initListen = () => {
         },
 
         onTokenWillExpire: () => {
-            let { myUserInfo } = store.getState()
-            getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
-                const { accessToken } = res
-                WebIM.conn.renewToken(accessToken)
-                console.log('reset token success')
-            })
+            // let { myUserInfo } = store.getState()
+            // getToken(myUserInfo.agoraId, myUserInfo.nickName).then((res) => {
+            //     const { accessToken } = res
+            //     WebIM.conn.renewToken(accessToken)
+            //     console.log('reset token success')
+            // })
         },
         onPresenceStatusChange: function(message){
             let { myUserInfo, presenceList } = store.getState()

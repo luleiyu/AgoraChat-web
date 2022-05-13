@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => {
         },
         gInfoSetting: {
             display: 'flex',
-            justifyContent: 'space-between',
+            // justifyContent: 'space-between',
             alignItems: 'center',
         },
         gMumberInput: {
@@ -102,7 +102,7 @@ const CreateGroup = () => {
     const classes = useStyles();
     const [groupNameValue, setGroupNameValue] = useState('')
     const [groupDescriptionValue, setGroupDescriptionValue] = useState('')
-    // const [groupMaximumValue, setGroupMaximumValue] = useState('')
+    const [groupMaximumValue, setGroupMaximumValue] = useState(200)
     const [groupPublicChecked, setGroupPublicChecked] = useState(true);
     const [groupApprovalChecked, setGroupApprovalChecked] = useState(true)
     const [groupInviteChecked, setGroupInviteChecked] = useState(false);
@@ -128,9 +128,12 @@ const CreateGroup = () => {
         setGroupDescriptionValue(event.target.value)
     }
     //
-    // const handleMaximumChange = (event) => {
-    //     setGroupMaximumValue(event.target.value)
-    // }
+    const handleMaximumChange = (event) => {
+        if (Number(event.target.value) > 2000) {
+            return
+        }
+        setGroupMaximumValue(event.target.value)
+    }
 
     // Group Type： prublic/private
     const handleGrooupPublicChange = (event) => {
@@ -149,7 +152,7 @@ const CreateGroup = () => {
             return;
         }
         setShowAddMemberDialog(true);
-        setGroupInfoData({ groupNameValue, groupDescriptionValue, groupPublicChecked, groupApprovalChecked, groupInviteChecked })
+        setGroupInfoData({ groupNameValue, groupDescriptionValue, groupPublicChecked, groupApprovalChecked, groupInviteChecked, groupMaximumValue })
     }
     const handleSelectUserDialogClose = () => {
         setShowAddMemberDialog(false);
@@ -203,15 +206,15 @@ const CreateGroup = () => {
                                 {groupDescriptionValue.length}/300
                             </Box>
                         </Box>
-                        <Box style={{ color:'#CCCCCC', pointerEvents: 'none' }}>
+                        <Box>
                             <Box className={classes.gInfoSetting}>
                                 <Typography className={classes.gNameText}>Maximum Mumber</Typography>
                                 <InputBase
                                     type="number"
-                                    value={200}
-                                    style={{ color:'#CCCCCC'}}
+                                    value={groupMaximumValue}
+                                    style={{marginLeft: '20px' }}
                                     placeholder={i18next.t('No More Than 2000')}
-                                    // onChange={groupMaximumValue} 
+                                    onChange={handleMaximumChange}
                                     />
                             </Box>
                         </Box>

@@ -10,6 +10,7 @@ import { EaseApp } from 'luleiyu-agora-chat'
 
 import search from '../../../assets/magnifying@2x.png'
 import deleteImg from '../../../assets/delete@2x.png'
+import giphyGif from '../../../assets/giphy.gif'
 
 const giphyFetch = new GiphyFetch(giphyAppKey)
 const useStyles = makeStyles((theme) => {
@@ -224,7 +225,7 @@ function GridDemo({ searchValue, width, closeLoading }) {
   const onGifClick = (gif, e) => {
     e.preventDefault()
     console.log(gif, e, 'gif, e')
-    const { images: { fixed_width_small: { url } }, type } = gif
+    const { images: { fixed_width_small: { url }}, type } = gif
     EaseApp.handleThirdEmoji({emoji_url: url, emoji_type: type})
     EaseApp.closeThirdEmoji()
   }
@@ -285,7 +286,7 @@ export default function thirdEmoji () {
         {
           loading ?
           <div className={classes.loadingBox}>
-            <img className={classes.loadingImg} src="https://media4.giphy.com/media/sSgvbe1m3n93G/giphy.gif?cid=53fd32187m84dbp9pk6cq1j7kl4ps54cnu0uoqhpd9no6b30&rid=giphy.gif&ct=g" alt="loading" />
+            <img className={classes.loadingImg} src={giphyGif} alt="loading" />
           </div>
           : null
         }
@@ -304,7 +305,7 @@ export default function thirdEmoji () {
         {
           loading ?
           <div className={classes.loadingBox}>
-            <img className={classes.loadingImg} src="https://media4.giphy.com/media/sSgvbe1m3n93G/giphy.gif?cid=53fd32187m84dbp9pk6cq1j7kl4ps54cnu0uoqhpd9no6b30&rid=giphy.gif&ct=g" alt="loading" />
+            <img className={classes.loadingImg} src={giphyGif} alt="loading" />
           </div>
           : null
         }
