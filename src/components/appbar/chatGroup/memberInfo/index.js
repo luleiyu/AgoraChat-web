@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // import { EaseApp } from "chat-uikit";
 import { EaseApp } from "luleiyu-agora-chat";
 import { addContact } from "../../../../api/contactsChat/getContacts";
-import avatarImg from '../../../../assets/avatar_another_style.png'
+import avatarImg from '../../../../assets/avatar1.png'
 import newChatIcon from '../../../../assets/newchat@2x.png'
 import addContactIcon from '../../../../assets/addcontact@2x.png'
 

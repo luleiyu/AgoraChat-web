@@ -298,7 +298,7 @@ const SessionInfoPopover = ({ open, onClose, sessionInfo }) => {
 	}
 	useEffect(() => {
 		if (to) {
-			getNotDisturb(to)
+			// getNotDisturb(to)
 		}
 	}, [to])
 

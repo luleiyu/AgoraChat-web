@@ -58,6 +58,8 @@ export default function Main() {
                 setPresenceList(val)
                 setMemberInfo(res)
                 setGroupMemberInfoAddEl(e.target);
+            }).catch(err => {
+                setGroupMemberInfoAddEl(e.target);
             })
         }
     }

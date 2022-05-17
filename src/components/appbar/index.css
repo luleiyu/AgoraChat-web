@@ -4,11 +4,9 @@
     /* background-color: #EDEFF2; */
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     justify-content: space-between;
     padding: 0 12px;
     box-sizing: border-box;
-    position: relative;
 }
 
 .chatlist-header-avatar {
@@ -20,24 +18,13 @@
 }
 
 .chatlist-header-title {
-    /* color: #7F91A8; */
     color: #005fff;
     font-size: 24px;
     font-weight: 800;
 }
-.chatlist-header-sub-title {
-    font-family: 'SF Pro Text';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    color: #A3A3A3;
-    margin-left: 10px;
-}
+
 .chatlist-header-more {
     transform: rotate(90deg);
     cursor: pointer;
     position: relative;
-    /* margin-left: 30px;
-    font-size: 20px;
-    font-weight: 700; */
 }
