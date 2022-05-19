@@ -254,7 +254,7 @@ const initListen = () => {
                             }
                         })
                     } else {
-                        presenceList.contact(tempArr)
+                        presenceList.concat(tempArr)
                     }
                     console.log(presenceList, 'onPresenceStatusChange=presenceList')
                     const newArr = presenceList

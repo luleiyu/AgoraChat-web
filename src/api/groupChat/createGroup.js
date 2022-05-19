@@ -28,7 +28,7 @@ const createGroup = (
 			public: groupPublicChecked,
 			approval: groupApprovalChecked,
 			allowinvites: groupInviteChecked,
-			inviteNeedConfirm: false,
+			inviteNeedConfirm: true,
 			maxusers: groupMaximumValue
 		},
 	};
