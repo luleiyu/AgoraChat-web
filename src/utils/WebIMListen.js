@@ -94,7 +94,6 @@ function publicNotify (message, msgType, iconTitle = {}, body = 'You Have A New 
             default:
                 break
         }
-
     }
 
     if (getLocalStorageData().sound) {

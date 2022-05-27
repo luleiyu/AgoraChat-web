@@ -1,5 +1,7 @@
-import React, { useState,useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/appbar'
+import ThirdSticket from '../components/appbar/thirdSticket'
+import ThirdGifs from '../components/appbar/thirdGifs'
 import './login.css'
 import getGroupInfo from '../api/groupChat/getGroupInfo'
 import WebIM from '../utils/WebIM';
@@ -72,6 +74,7 @@ export default function Main() {
     }
 
     const handleClickGroupMemberInfoDialog = (e,res) => {
+        console.log(res, 'handleClickGroupMemberInfoDialog')
         let isGroupChat = res.chatType === "groupChat"
         if (isGroupChat) {
             subFriendStatus({usernames: [res.from]}).then(val => {
@@ -134,6 +137,8 @@ export default function Main() {
             <EaseApp
                 isShowReaction={true}
                 header={<Header />}
+                thridPartyStickets={<ThirdSticket />}
+                thridPartyGifs={<ThirdGifs />}
                 onChatAvatarClick={handleClickSessionInfoDialog}
                 onAvatarChange={handleClickGroupMemberInfoDialog}
                 onConversationClick={handleonConversationClick}

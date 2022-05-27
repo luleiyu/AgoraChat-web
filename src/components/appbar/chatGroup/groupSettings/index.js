@@ -24,7 +24,7 @@ import addMembersIcon from "../../../../assets/addcontact@2x.png";
 import noticeIcon from "../../../../assets/notice@2x.png";
 import filesIcon from "../../../../assets/files@2x.png";
 import editIcon from "../../../../assets/edit@2x.png";
-import allowSearchIcon from "../../../../assets/allow_search@2x.png";
+// import allowSearchIcon from "../../../../assets/allow_search@2x.png";
 import transferIcon from "../../../../assets/transfer@2x.png";
 import deleteIcon from "../../../../assets/red@2x.png";
 import muteIcon from '../../../../assets/unmute.png'
@@ -200,20 +200,6 @@ const GroupSettingsDialog = ({ open, onClose, currentGroupId }) => {
 					></img>
 					<Typography className={classes.menus}>
 						{i18next.t("Notifications")}
-					</Typography>
-				</Button>
-			);
-		};
-		const groupFileLabel = () => {
-			return (
-				<Button className={classes.membersBox}>
-					<img
-						src={filesIcon}
-						alt="files"
-						className={classes.iconStyle}
-					></img>
-					<Typography className={classes.menus}>
-						Group File
 					</Typography>
 				</Button>
 			);

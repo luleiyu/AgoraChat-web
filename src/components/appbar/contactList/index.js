@@ -127,6 +127,7 @@ function AddressBookDialog(props) {
     const [contactList, setContactList] = useState([])
     const handleClick = (itemData) => {
         // uikit
+        console.log(itemData, 'itemData', muteDataObj[itemData.name])
         let conversationItem = {
 			conversationType: "singleChat",
 			conversationId: itemData.name,
@@ -191,6 +192,7 @@ function AddressBookDialog(props) {
                                                         >
                                                         </Avatar>
                                                     </ListItemAvatar>
+                                                    {/* <img className={classes.statusImg} alt="" src={statusImgObj[user?.presence?.ext] || customIcon} /> */}
                                                     <Box>
                                                         <Typography className={classes.itemName}>
                                                             {user.name}
